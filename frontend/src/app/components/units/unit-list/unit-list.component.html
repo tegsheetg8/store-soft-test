@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="card">
+    <h2>Units</h2>
+    <button class="btn btn-primary" routerLink="/units/new">Add Unit</button>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Short Name</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let unit of units">
+        <td>{{ unit.name }}</td>
+        <td>{{ unit.shortName }}</td>
+        <td>
+          <button class="btn btn-primary" routerLink="/units/edit/{{ unit.id }}">Edit</button>
+          <button class="btn btn-danger" (click)="deleteUnit(unit.id)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

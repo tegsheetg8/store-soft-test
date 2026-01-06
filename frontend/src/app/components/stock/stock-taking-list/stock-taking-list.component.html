@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="card">
+    <h2>Stock Taking</h2>
+    <button class="btn btn-primary" routerLink="/stock-taking/new">New Stock Taking</button>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Note</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let st of stockTakings">
+        <td>{{ st.id }}</td>
+        <td>{{ st.note || '-' }}</td>
+        <td>{{ st.createdAt | date }}</td>
+        <td><button class="btn btn-primary" (click)="viewStockTaking(st.id)">View</button></td>
+      </tr>
+    </table>
+  </div>
+</div>

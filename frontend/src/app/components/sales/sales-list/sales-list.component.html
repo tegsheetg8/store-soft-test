@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card">
+    <h2>Sales</h2>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Cashier</th>
+        <th>Total</th>
+        <th>Paid</th>
+        <th>Change</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let sale of sales">
+        <td>{{ sale.id }}</td>
+        <td>{{ sale.user?.username }}</td>
+        <td>₮{{ sale.totalAmount }}</td>
+        <td>₮{{ sale.paidAmount }}</td>
+        <td>₮{{ sale.changeAmount }}</td>
+        <td>{{ sale.createdAt | date }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="printReceipt(sale.id)">Receipt</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

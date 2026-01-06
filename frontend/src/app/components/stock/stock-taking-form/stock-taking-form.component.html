@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="card">
+    <h2>New Stock Taking</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Note</label>
+        <textarea formControlName="note"></textarea>
+      </div>
+      <div formArrayName="items">
+        <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+          <div class="form-group">
+            <label>Product</label>
+            <select formControlName="productId">
+              <option value="">Select Product</option>
+              <option *ngFor="let p of products" [ngValue]="p.id">{{ p.name }} (Stock: {{ p.stock }})</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Real Quantity</label>
+            <input type="number" formControlName="realQty" min="0" step="0.01">
+          </div>
+          <button type="button" class="btn btn-danger" (click)="removeItem(i)">Remove</button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addItem()">Add Item</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn" routerLink="/stock-taking">Cancel</button>
+    </form>
+  </div>
+</div>

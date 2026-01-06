@@ -1,0 +1,62 @@
+<div class="pos-container">
+  <div class="pos-left">
+    <div class="search-section">
+      <h2>Search Products</h2>
+      <div class="search-box">
+        <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="searchByBarcode()"
+          placeholder="Search by name or scan barcode..." class="search-input">
+        <button class="btn btn-primary" (click)="searchProducts()">Search</button>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div *ngFor="let product of products" class="product-card" (click)="addToCart(product)">
+        <div class="product-name">{{ product.name }}</div>
+        <div class="product-info">
+          <span>Stock: {{ product.stock }} {{ product.unit?.shortName }}</span>
+          <span class="product-price">₮{{ product.salePrice }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pos-right">
+    <div class="cart-section">
+      <h2>Cart</h2>
+      <div class="cart-items">
+        <div *ngFor="let item of cart; let i = index" class="cart-item">
+          <div class="cart-item-info">
+            <div class="cart-item-name">{{ item.name }}</div>
+            <div class="cart-item-details">
+              <input type="number" [value]="item.quantity" (change)="updateQuantity(i, $any($event.target).value)"
+                min="1" class="quantity-input">
+              <span>{{ item.unit }} x ₮{{ item.price }}</span>
+            </div>
+          </div>
+          <div class="cart-item-actions">
+            <span class="cart-item-subtotal">₮{{ item.subtotal.toFixed(2) }}</span>
+            <button class="btn btn-danger" (click)="removeFromCart(i)">Remove</button>
+          </div>
+        </div>
+        <div *ngIf="cart.length === 0" class="empty-cart">Cart is empty</div>
+      </div>
+      <div class="cart-total">
+        <div class="total-row">
+          <span>Total:</span>
+          <span class="total-amount">₮{{ totalAmount.toFixed(2) }}</span>
+        </div>
+        <div class="payment-section">
+          <label>Paid Amount:</label>
+          <input type="number" [(ngModel)]="paidAmount" (input)="calculateChange()" min="0" step="0.01"
+            class="paid-input">
+        </div>
+        <div class="total-row">
+          <span>Change:</span>
+          <span class="change-amount">₮{{ changeAmount.toFixed(2) }}</span>
+        </div>
+        <button class="btn btn-primary btn-large" (click)="processPayment()"
+          [disabled]="cart.length === 0 || paidAmount < totalAmount || loading">
+          {{ loading ? 'Processing...' : 'Complete Sale' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

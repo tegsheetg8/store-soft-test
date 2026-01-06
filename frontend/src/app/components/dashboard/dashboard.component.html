@@ -1,0 +1,26 @@
+<div class="dashboard">
+  <header class="dashboard-header">
+    <h1>POS System</h1>
+    <div class="user-info">
+      <span>Welcome, {{ authService.getCurrentUser()?.username }} ({{ authService.getCurrentUser()?.role }})</span>
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
+  </header>
+  <nav class="dashboard-nav">
+    <a routerLink="/pos" routerLinkActive="active">POS</a>
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a routerLink="/categories" routerLinkActive="active">Categories</a>
+    <a routerLink="/units" routerLinkActive="active">Units</a>
+    <a routerLink="/suppliers" routerLinkActive="active">Suppliers</a>
+    <a routerLink="/stock-in" routerLinkActive="active">Stock In</a>
+    <a routerLink="/stock-out" routerLinkActive="active">Stock Out</a>
+    <a routerLink="/stock-taking" routerLinkActive="active">Stock Taking</a>
+    <a routerLink="/sales" routerLinkActive="active">Sales</a>
+    <a routerLink="/reports" routerLinkActive="active">Reports</a>
+    <a *ngIf="authService.isAdmin()" routerLink="/users" routerLinkActive="active">Users</a>
+  </nav>
+  <main class="dashboard-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

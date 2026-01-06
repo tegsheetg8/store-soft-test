@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="card">
+    <h2>Suppliers</h2>
+    <button class="btn btn-primary" routerLink="/suppliers/new">Add Supplier</button>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let supplier of suppliers">
+        <td>{{ supplier.name }}</td>
+        <td>{{ supplier.phone || '-' }}</td>
+        <td>{{ supplier.email || '-' }}</td>
+        <td>{{ supplier.address || '-' }}</td>
+        <td>
+          <button class="btn btn-primary" routerLink="/suppliers/edit/{{ supplier.id }}">Edit</button>
+          <button class="btn btn-danger" (click)="deleteSupplier(supplier.id)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

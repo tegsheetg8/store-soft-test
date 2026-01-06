@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="card">
+    <h2>Users</h2>
+    <button class="btn btn-primary" routerLink="/users/new">Add User</button>
+    <table class="table">
+      <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
+        <td>
+          <button class="btn btn-primary" routerLink="/users/edit/{{ user.id }}">Edit</button>
+          <button class="btn btn-danger" (click)="delete(user.id)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
