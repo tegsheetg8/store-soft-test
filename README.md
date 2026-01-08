@@ -5,11 +5,13 @@ A full-featured web-based POS system for retail stores built with NestJS (backen
 ## Features
 
 ### 🔐 Authentication & Users
+
 - JWT-based authentication
 - Role-based access control (Admin, Cashier)
 - User management (Admin only)
 
 ### 📦 Product Management
+
 - Product CRUD operations
 - Product categories
 - Units of measurement
@@ -18,15 +20,18 @@ A full-featured web-based POS system for retail stores built with NestJS (backen
 - Minimum stock alerts
 
 ### 🏢 Supplier Management
+
 - Supplier registration and management
 - Supplier information (name, phone, email, address)
 
 ### 📥 Stock Management
+
 - **Stock In**: Register stock income from suppliers
 - **Stock Out**: Manual stock out (damaged, expired, adjustment)
 - **Stock Taking**: Inventory count and adjustment
 
 ### 💰 Sales (POS)
+
 - Fast POS screen
 - Search products by name or barcode
 - Add/remove items to cart
@@ -36,10 +41,12 @@ A full-featured web-based POS system for retail stores built with NestJS (backen
 - Automatic stock decrease
 
 ### 🧾 Receipt Printing
+
 - Generate printable receipts (HTML/ESC-POS ready)
 - Receipt includes store name, date/time, items, totals
 
 ### 📊 Reports
+
 - Sales report by date range
 - Stock balance report
 - Low stock report
@@ -47,6 +54,7 @@ A full-featured web-based POS system for retail stores built with NestJS (backen
 ## Tech Stack
 
 ### Backend
+
 - **NestJS** (TypeScript)
 - **PostgreSQL** database
 - **TypeORM** for database operations
@@ -55,6 +63,7 @@ A full-featured web-based POS system for retail stores built with NestJS (backen
 - **class-validator** for DTO validation
 
 ### Frontend
+
 - **Angular 17** (TypeScript)
 - **Angular Material** for UI components
 - **RxJS** for reactive programming
@@ -120,11 +129,14 @@ npm install
 cp .env.example .env
 
 # Edit .env file with your database credentials
-# DB_HOST=localhost
-# DB_PORT=5432
-# DB_USERNAME=postgres
-# DB_PASSWORD=your_password
-# DB_DATABASE=pos_db
+# You can use either DATABASE_URL or individual PG* variables:
+# DATABASE_URL=postgresql://user:password@host:port/database
+# OR
+# PGHOST=localhost
+# PGPORT=5432
+# PGUSER=postgres
+# PGPASSWORD=your_password
+# PGDATABASE=pos_db
 # JWT_SECRET=your-secret-key-change-in-production
 # JWT_EXPIRES_IN=24h
 # PORT=3000
@@ -157,21 +169,24 @@ The frontend will run on `http://localhost:4200`
 
 After running the seed script, you can login with:
 
-- **Admin**: 
+- **Admin**:
+
   - Username: `admin`
   - Password: `admin123`
 
-- **Cashier**: 
+- **Cashier**:
   - Username: `cashier`
   - Password: `cashier123`
 
 ## API Endpoints
 
 ### Authentication
+
 - `POST /auth/login` - User login
 - `GET /auth/profile` - Get current user profile
 
 ### Users (Admin only)
+
 - `GET /users` - List all users
 - `GET /users/:id` - Get user by ID
 - `POST /users` - Create user
@@ -179,6 +194,7 @@ After running the seed script, you can login with:
 - `DELETE /users/:id` - Delete user
 
 ### Categories
+
 - `GET /categories` - List all categories
 - `GET /categories/:id` - Get category by ID
 - `POST /categories` - Create category
@@ -186,6 +202,7 @@ After running the seed script, you can login with:
 - `DELETE /categories/:id` - Delete category
 
 ### Units
+
 - `GET /units` - List all units
 - `GET /units/:id` - Get unit by ID
 - `POST /units` - Create unit
@@ -193,6 +210,7 @@ After running the seed script, you can login with:
 - `DELETE /units/:id` - Delete unit
 
 ### Products
+
 - `GET /products` - List all products
 - `GET /products?search=query` - Search products
 - `GET /products/barcode/:barcode` - Get product by barcode
@@ -202,6 +220,7 @@ After running the seed script, you can login with:
 - `DELETE /products/:id` - Delete product
 
 ### Suppliers
+
 - `GET /suppliers` - List all suppliers
 - `GET /suppliers/:id` - Get supplier by ID
 - `POST /suppliers` - Create supplier
@@ -209,6 +228,7 @@ After running the seed script, you can login with:
 - `DELETE /suppliers/:id` - Delete supplier
 
 ### Stock
+
 - `POST /stock/in` - Create stock in
 - `GET /stock/in` - List all stock ins
 - `GET /stock/in/:id` - Get stock in by ID
@@ -220,6 +240,7 @@ After running the seed script, you can login with:
 - `GET /stock/taking/:id` - Get stock taking by ID
 
 ### Sales
+
 - `POST /sales` - Create sale
 - `GET /sales` - List all sales
 - `GET /sales?startDate=...&endDate=...` - Get sales by date range
@@ -227,6 +248,7 @@ After running the seed script, you can login with:
 - `GET /sales/:id/receipt` - Get receipt HTML
 
 ### Reports
+
 - `GET /reports/sales?startDate=...&endDate=...` - Sales report
 - `GET /reports/stock-balance` - Stock balance report
 - `GET /reports/low-stock` - Low stock report
@@ -265,6 +287,7 @@ After running the seed script, you can login with:
 ## Receipt Template
 
 Receipts are generated in HTML format and include:
+
 - Store name
 - Date and time
 - Receipt number
@@ -320,4 +343,3 @@ MIT
 ## Support
 
 For issues and questions, please create an issue in the repository.
-
