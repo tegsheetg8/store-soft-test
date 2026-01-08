@@ -129,9 +129,6 @@ npm install
 cp .env.example .env
 
 # Edit .env file with your database credentials
-# You can use either DATABASE_URL or individual PG* variables:
-# DATABASE_URL=postgresql://user:password@host:port/database
-# OR
 # PGHOST=localhost
 # PGPORT=5432
 # PGUSER=postgres

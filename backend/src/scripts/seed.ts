@@ -4,31 +4,16 @@ import * as bcrypt from "bcrypt";
 import { User, UserRole } from "../entities/user.entity";
 
 async function seed() {
-  // Support DATABASE_URL or individual PG* variables
-  let config: any = {
+  const dataSource = new DataSource({
     type: "postgres",
+    host: process.env.PGHOST || "localhost",
+    port: parseInt(process.env.PGPORT || "5432"),
+    username: process.env.PGUSER || "postgres",
+    password: process.env.PGPASSWORD || "postgres",
+    database: process.env.PGDATABASE || "pos_db",
     entities: [__dirname + "/../**/*.entity{.ts,.js}"],
     synchronize: false,
-  };
-
-  if (process.env.DATABASE_URL) {
-    // Parse DATABASE_URL format: postgresql://user:password@host:port/database
-    const url = new URL(process.env.DATABASE_URL);
-    config.host = url.hostname;
-    config.port = parseInt(url.port || "5432");
-    config.username = url.username;
-    config.password = url.password;
-    config.database = url.pathname.slice(1); // Remove leading '/'
-  } else {
-    // Fall back to individual PG* environment variables
-    config.host = process.env.PGHOST || process.env.DB_HOST || "localhost";
-    config.port = parseInt(process.env.PGPORT || process.env.DB_PORT || "5432");
-    config.username = process.env.PGUSER || process.env.DB_USERNAME || "postgres";
-    config.password = process.env.PGPASSWORD || process.env.DB_PASSWORD || "postgres";
-    config.database = process.env.PGDATABASE || process.env.DB_DATABASE || "pos_db";
-  }
-
-  const dataSource = new DataSource(config);
+  });
 
   await dataSource.initialize();
 
