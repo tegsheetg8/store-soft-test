@@ -5,20 +5,25 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>Username</label>
-        <input type="text" formControlName="username" required>
+        <input type="text" formControlName="username" required />
       </div>
       <div class="form-group">
         <label>Password</label>
-        <input type="password" formControlName="password" required>
+        <input type="password" formControlName="password" required />
       </div>
       <div *ngIf="error" class="error">{{ error }}</div>
-      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
     </form>
     <div class="login-info">
-      <p><strong>Default credentials:</strong></p>
+      <p><strong>Default 1 credentials:</strong></p>
       <p>Admin: username=admin, password=admin123</p>
       <p>Cashier: username=cashier, password=cashier123</p>
     </div>
   </div>
 </div>
-
